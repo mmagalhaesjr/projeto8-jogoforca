@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import Jogo from "./componentes/Jogo";
+import Letras from "./componentes/Letras";
+import Chute from "./componentes/Chute";
+import palavras from './palavras'
+
+
 
 function App() {
+  const [palavraSelecionada, setPalavraSelecionada] = useState("")
+  const letras = palavraSelecionada.split("")
+  const [selecionados, setSelecionados] = useState([])
+  const [letrasCorretas, setLetrasCorretas] = useState([])
+  const [erros, setErros] = useState(0)
+  let [statusJogo, setStatusJogo] = useState(false)
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Jogo palavras={palavras} selecionados={selecionados} setSelecionados={setSelecionados} palavraSelecionada={palavraSelecionada} setPalavraSelecionada={setPalavraSelecionada} letras={letras} letrasCorretas={letrasCorretas} erros={erros} setStatusJogo={setStatusJogo} />
+      <Letras letras={letras} selecionados={selecionados} setSelecionados={setSelecionados} letrasCorretas={letrasCorretas} setLetrasCorretas={setLetrasCorretas} erros={erros} setErros={setErros} statusJogo={statusJogo} setStatusJogo={setStatusJogo} />
+      <Chute />
+    </main>
+
   );
 }
 
 export default App;
+
+
